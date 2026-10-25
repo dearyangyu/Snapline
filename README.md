@@ -1,9 +1,14 @@
 <p align="center">
-  <img src="docs/assets/logo.svg" width="88" height="88" alt="Snapline 标志">
+  <img src="https://raw.githubusercontent.com/dearyangyu/Snapline/master/docs/assets/logo.png" width="88" height="88" alt="Snapline 标志">
 </p>
 <h1 align="center">Snapline · 晾图</h1>
 <p align="center">把截图晾在屏幕边上，随手取用。</p>
 <p align="center">Windows · Rust · Tauri 2 · React · MIT</p>
+<p align="center">
+  <strong><a href="https://github.com/dearyangyu/Snapline/releases/download/v0.4.25/Snapline_0.4.25_x64-setup.exe">下载安装版</a></strong> ·
+  <strong><a href="https://github.com/dearyangyu/Snapline/releases/download/v0.4.25/Snapline_0.4.25_x64-portable.zip">下载免安装版</a></strong> ·
+  <a href="https://github.com/dearyangyu/Snapline/releases/latest">全部发布文件</a>
+</p>
 <p align="center">
   <a href="docs/USER-GUIDE.md">使用指南</a> ·
   <a href="docs/PRIVACY.md">隐私与数据</a> ·
@@ -14,9 +19,25 @@
 
 Snapline 是一个本地优先的 Windows 截图与贴图工具。截图、标注、贴到桌面，再把常用图片挂在顶部晾衣架上；资料库负责收藏、搜索和整理。
 
-![Snapline 图库界面，展示生成的示例图片](docs/assets/gallery-preview.png)
+![Snapline 图库界面：收藏、搜索、复制与贴图](https://raw.githubusercontent.com/dearyangyu/Snapline/master/docs/assets/gallery.jpg)
 
-<p align="center"><sub>浏览器演示，使用生成的示例图片；原生功能需 Windows 桌面版。</sub></p>
+## 看看效果
+
+**晾衣架与桌面小伙伴** — 图片挂在绳上，展开时轻轻回弹，伙伴在线上活动。
+
+![晾衣架展开与角色动作演示](https://raw.githubusercontent.com/dearyangyu/Snapline/master/docs/assets/clothesline-demo.gif)
+
+[观看 / 下载 MP4 演示](https://github.com/dearyangyu/Snapline/releases/download/v0.4.25/clothesline-demo.mp4)
+
+| 截图工具栏 | 全屏瀑布流 |
+| --- | --- |
+| ![截图工具栏浏览器演示](https://raw.githubusercontent.com/dearyangyu/Snapline/master/docs/assets/capture-tools.jpg) | ![全屏图库浏览器演示](https://raw.githubusercontent.com/dearyangyu/Snapline/master/docs/assets/waterfall.jpg) |
+
+**放大查看** — 滚轮缩放、拖动平移、原始尺寸与适应窗口。
+
+![大图查看器](https://raw.githubusercontent.com/dearyangyu/Snapline/master/docs/assets/viewer.jpg)
+
+以上图片与动画录自生产界面的浏览器演示，使用生成的示例图片；背景与选区为演示场景，真实屏幕捕获、贴图和跨应用拖放需 Windows 桌面版。图片不能加载时，可打开[展示文件目录](https://github.com/dearyangyu/Snapline/tree/master/docs/assets)或[下载演示视频](https://github.com/dearyangyu/Snapline/releases/download/v0.4.25/clothesline-demo.mp4)。
 
 ## 能做什么
 
@@ -32,7 +53,9 @@ Snapline 是一个本地优先的 Windows 截图与贴图工具。截图、标�
 
 ## 开始使用
 
-目标系统为 **Windows 10 / 11 x64**，需要 Microsoft Edge WebView2 Runtime。使用发布包中的 `Snapline.exe`，或运行 `Snapline_<版本>_x64-setup.exe` 安装。WebView2 缺失时，安装运行时可能需要联网；当前构建没有代码签名证书。
+前往 [Releases](https://github.com/dearyangyu/Snapline/releases/latest) 下载成品。一般用户选择 `Snapline_0.4.25_x64-setup.exe`；免安装版下载 ZIP 后完整解压，运行其中的 `Snapline.exe`。GitHub 自动生成的 **Source code** 是源码包，不是可运行的软件。
+
+目标系统为 **Windows 10 / 11 x64**，需要 Microsoft Edge WebView2 Runtime。WebView2 缺失时，安装运行时可能需要联网；当前构建没有代码签名证书。发布页同时提供 `SHA256SUMS.txt` 用于核对下载文件。
 
 | 默认全局快捷键 | 功能 |
 | --- | --- |
@@ -79,7 +102,7 @@ src-tauri/src/        Rust 图库、Windows 捕获、剪贴板、OLE 与窗口�
 src-tauri/icons/      原创应用图标
 scripts/              Windows 构建、图标生成与发布辅助脚本
 docs/                 使用、隐私、素材说明与验证范围
-docs/assets/          原创 SVG / PNG 标志
+docs/assets/          原创标志、功能展示图与动画
 .github/workflows/    Windows 自动检查与构建
 ```
 
