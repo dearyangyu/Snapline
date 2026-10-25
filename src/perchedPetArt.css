@@ -1,0 +1,13 @@
+.candidate-pet { position: relative; display: block; width: 32px; height: 30px; pointer-events: none; user-select: none; }
+.candidate-back, .candidate-embrace { position: absolute; inset: 0; display: block; width: 32px; height: 30px; overflow: visible; }
+.candidate-head-clip { position: absolute; left: -4px; top: -5px; width: 40px; height: 28px; overflow: hidden; }
+.candidate-pet .candidate-head { position: absolute; left: 7px; top: 4px; width: 26px; height: 27.625px; transform-origin: 13px 23px; transform: translate(var(--candidate-head-x, 0px), var(--candidate-head-y, 0px)) rotate(var(--candidate-head-angle, 0deg)) scale(var(--candidate-head-scale-x, 1), var(--candidate-head-scale-y, 1)); }
+.candidate-pet .pet-avatar { width: 26px; height: 27.625px; }
+.candidate-pet .pet-avatar > ellipse, .candidate-pet .anchor-creature-foot { display: none; }
+.candidate-pet .anchor-creature-lift, .candidate-pet .anchor-creature-body { transform: none; }
+.candidate-pet .anchor-creature-face { transform: translate(var(--candidate-gaze-x, 0px), var(--candidate-gaze-y, 0px)); }
+.candidate-pet .anchor-creature-eyes { transform-box: fill-box; transform-origin: center; transform: scaleY(var(--candidate-eye-open, 1)); }
+.candidate-pet .candidate-haunch { transform-origin: 24px 23px; transform: scale(var(--candidate-body-scale-x, 1), var(--candidate-body-scale-y, 1)); }
+.candidate-pet .candidate-paw-left { transform-origin: 8px 19px; transform: translateY(var(--candidate-paw-left-y, 0px)) rotate(var(--candidate-paw-left-angle, 0deg)); }
+.candidate-pet .candidate-paw-right { transform-origin: 24px 19px; transform: translateY(var(--candidate-paw-right-y, 0px)) rotate(var(--candidate-paw-right-angle, 0deg)); }
+.candidate-pet .candidate-chin { transform: translateY(var(--candidate-chin-y, 0px)); }

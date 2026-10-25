@@ -1,0 +1,40 @@
+.annotation-backdrop { padding: 20px; }
+.annotation-editor { width: min(1280px, 100%); height: min(960px, 100%); }
+.annotation-editor .editor-header { padding: 12px 18px; }
+.annotation-editor .editor-header > div { min-width: 0; }
+.annotation-editor .editor-header strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.annotation-editor .editor-header span { font-size: 11px; }
+.annotation-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 10px 14px; border-bottom: 0; flex-shrink: 0; }
+.annotation-tools .icon-button { width: auto; min-width: 36px; height: 38px; padding: 0 9px; gap: 6px; border-radius: 6px; }
+.annotation-tools .selected { color: var(--ink); background: var(--accent-soft); box-shadow: none; }
+.annotation-tools .tool-caption { font-size: 11px; white-space: nowrap; }
+.annotation-options { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; padding: 9px 20px; border-bottom: 0; flex-shrink: 0; }
+.annotation-colors { display: flex; align-items: center; gap: 11px; }
+.annotation-colors .color-dot { width: 17px; height: 17px; border: 1px solid #80808055; }
+.annotation-colors input[type="color"] { width: 24px; height: 24px; padding: 0; border: 0; border-radius: 4px; background: transparent; cursor: pointer; }
+.annotation-width { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+.annotation-width input { width: 80px; accent-color: var(--accent, #444444); }
+.annotation-width output { width: 28px; font-variant-numeric: tabular-nums; }
+.annotation-option-note { font-size: 11px; color: var(--muted); margin-left: auto; }
+.annotation-text-form { display: flex; gap: 10px; align-items: center; padding: 10px 18px; border-bottom: 0; background: var(--sidebar); }
+.annotation-text-form label { font-size: 12px; white-space: nowrap; }
+.annotation-text-form textarea { resize: vertical; min-height: 48px; max-height: 120px; flex: 1; min-width: 80px; border: 0; border-radius: 6px; background: var(--surface); color: inherit; font: inherit; font-size: 13px; padding: 8px; }
+.annotation-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; color: var(--muted); }
+.annotation-editor .editor-stage { padding: 24px; }
+.annotation-editor .editor-stage canvas { outline-offset: -3px; }
+.annotation-editor .editor-toolbar { flex-wrap: wrap; gap: 5px; padding: 9px 14px; }
+.annotation-status { margin-left: 8px; font-size: 11px; color: var(--muted); white-space: nowrap; }
+.annotation-editor button:focus-visible:not(:disabled) { outline:none; box-shadow:none; background-image:linear-gradient(var(--button-focus-tint), var(--button-focus-tint)); }
+.annotation-editor input:focus-visible, .annotation-editor textarea:focus-visible, .annotation-editor canvas:focus-visible { outline:none; box-shadow:inset 0 -2px var(--accent); }
+.annotation-editor .color-dot { position:relative; }
+.annotation-editor .color-dot:focus-visible:not(:disabled) { background-image:none; box-shadow:none; }
+.annotation-editor .color-dot:focus-visible:not(.active)::after { content:""; position:absolute; inset:calc(50% - 2px); border-radius:50%; background:currentColor; pointer-events:none; }
+.annotation-editor .color-dot.active:focus-visible > svg { transform:scale(1.2); }
+.annotation-editor .button { white-space: nowrap; }
+@media(max-width: 800px) { .annotation-tools .tool-caption { display: none; } .annotation-option-note { display: none; } .annotation-tools { justify-content: center; } .annotation-options { justify-content: space-between; gap: 10px; } .annotation-status { display: none; } }
+@media(max-height: 550px) { .annotation-backdrop { padding: 8px; } .annotation-editor .editor-header { padding: 6px 12px; } .annotation-editor .editor-header span { display: none; } .annotation-tools { padding: 4px 10px; } .annotation-options { padding: 5px 14px; } .annotation-editor .editor-stage { padding: 10px; } }
+
+.annotation-editor .editor-stage canvas:focus-visible { box-shadow: 0 5px 30px #0002; }
+.annotation-editor:has(canvas:focus-visible) .annotation-status { display: inline; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+.annotation-editor:has(canvas:focus-visible) .editor-stage { background-color: var(--accent-soft); }

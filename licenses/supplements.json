@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "entries": [
+    {
+      "ecosystem": "cargo",
+      "name": "alloc-stdlib",
+      "version": "0.3.0",
+      "files": [
+        {
+          "path": "supplemental/alloc-stdlib-LICENSE",
+          "filename": "alloc-stdlib-LICENSE",
+          "sha256": "C0C56F26D9C051CAC4D200C34C84E7AE9AAA853E01A982A1DF08B09931E518AE",
+          "url": "https://raw.githubusercontent.com/dropbox/rust-alloc-no-stdlib/0a81fd6928ea3b33c8cd484aa4575d50ffb98012/LICENSE",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "clipboard-win",
+      "version": "5.4.1",
+      "files": [
+        {
+          "path": "supplemental/clipboard-win-LICENSE",
+          "filename": "clipboard-win-LICENSE",
+          "sha256": "C9BFF75738922193E67FA726FA225535870D2AA1059F91452C411736284AD566",
+          "url": "https://raw.githubusercontent.com/DoumanAsh/clipboard-win/3b27cf2bfd1adcfa6e0264eb51c1025ddaf0f342/LICENSE",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "webview2-com",
+      "version": "0.39.1",
+      "files": [
+        {
+          "path": "supplemental/webview2-rs-edc2-LICENSE",
+          "filename": "webview2-rs-edc2-LICENSE",
+          "sha256": "0DCF41516E608BBCB6CDC5229FEB7B86FE4A643B85E7DF251133C93408FDAC73",
+          "url": "https://raw.githubusercontent.com/wravery/webview2-rs/edc2caf886175ccaebe86078c9cfe1ae2a187328/LICENSE",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "webview2-com-macros",
+      "version": "0.8.1",
+      "files": [
+        {
+          "path": "supplemental/webview2-rs-dffa-LICENSE",
+          "filename": "webview2-rs-dffa-LICENSE",
+          "sha256": "0DCF41516E608BBCB6CDC5229FEB7B86FE4A643B85E7DF251133C93408FDAC73",
+          "url": "https://raw.githubusercontent.com/wravery/webview2-rs/dffa41a8a46d3f5565eefbff2de57d38d399f158/LICENSE",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "webview2-com-sys",
+      "version": "0.39.1",
+      "files": [
+        {
+          "path": "supplemental/webview2-rs-edc2-LICENSE",
+          "filename": "webview2-rs-edc2-LICENSE",
+          "sha256": "0DCF41516E608BBCB6CDC5229FEB7B86FE4A643B85E7DF251133C93408FDAC73",
+          "url": "https://raw.githubusercontent.com/wravery/webview2-rs/edc2caf886175ccaebe86078c9cfe1ae2a187328/LICENSE",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        }
+      ]
+    },
+    {
+      "ecosystem": "cargo",
+      "name": "tauri-plugin",
+      "version": "2.7.2",
+      "files": [
+        {
+          "path": "supplemental/tauri-plugin-LICENSE-MIT",
+          "filename": "tauri-plugin-LICENSE-MIT",
+          "sha256": "9DD42EA92CFF2EDE5CD477CBFCCE051B2D0115C0AC7F368EE88CB545055DFF1D",
+          "url": "https://raw.githubusercontent.com/tauri-apps/tauri/59b63ab500da9859f12d8888c3298bc29bba0b92/LICENSE-MIT",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        },
+        {
+          "path": "supplemental/tauri-plugin-LICENSE-APACHE",
+          "filename": "tauri-plugin-LICENSE-APACHE",
+          "sha256": "0D542E0C8804E39AA7F37EB00DA5A762149DC682D7829451287E11B938E94594",
+          "url": "https://raw.githubusercontent.com/tauri-apps/tauri/59b63ab500da9859f12d8888c3298bc29bba0b92/LICENSE-APACHE-2.0",
+          "note": "Official repository license at the commit recorded by this crate .cargo_vcs_info.json."
+        }
+      ]
+    },
+    {
+      "ecosystem": "sdk",
+      "name": "Microsoft.Web.WebView2",
+      "version": "1.0.3800.47",
+      "declaredLicense": "Microsoft WebView2 SDK license (BSD-style redistribution terms)",
+      "upstream": "https://www.nuget.org/packages/Microsoft.Web.WebView2/1.0.3800.47",
+      "files": [
+        {
+          "path": "supplemental/WebView2-1.0.3800.47-LICENSE.txt",
+          "filename": "WebView2-1.0.3800.47-LICENSE.txt",
+          "sha256": "0AF8F1B807512AAE39C2AC1AA4D0CAE65CABECB6FD554B8439A5162A0D6ECA55",
+          "url": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.3800.47/microsoft.web.webview2.1.0.3800.47.nupkg",
+          "note": "Exact file LICENSE.txt from official NuGet SDK; x64 static loader hash matches webview2-com-sys 0.39.1."
+        },
+        {
+          "path": "supplemental/WebView2-1.0.3800.47-NOTICE.txt",
+          "filename": "WebView2-1.0.3800.47-NOTICE.txt",
+          "sha256": "106423785C5B7EBA0A8E61D1837F2132E9C828E20AD530F565D981C1DF60DD90",
+          "url": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.3800.47/microsoft.web.webview2.1.0.3800.47.nupkg",
+          "note": "Exact file NOTICE.txt from official NuGet SDK; x64 static loader hash matches webview2-com-sys 0.39.1."
+        }
+      ],
+      "archiveUrl": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.3800.47/microsoft.web.webview2.1.0.3800.47.nupkg",
+      "archiveSha256": "56C9F26BDD07916A2D1949FB58A5C7E434DFA1173577DCA879206050C4E718DB",
+      "matchedLoaderSha256": "89C6B872783B8F6C3CEDBFF618ADB42082D455C615453AE10CFC753F1E8F25D8"
+    }
+  ]
+}

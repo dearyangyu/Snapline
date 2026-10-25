@@ -1,0 +1,26 @@
+.anchor-pets { position: absolute; inset: 0; pointer-events: none; --pet-width: 26px; --pet-height: 28px; }
+.anchor-pets[data-count="2"] { --pet-width: 24px; --pet-height: 25.8462px; }
+.anchor-pets[data-count="3"] { --pet-width: 22px; --pet-height: 23.6923px; }
+.anchor-creature {
+  position: absolute;
+  width: var(--pet-width); height: var(--pet-height);
+  left: calc(50% - var(--pet-width) / 2); top: calc(50% - var(--pet-height) / 2);
+  pointer-events: none;
+  transform: translateX(var(--pet-x, 0px));
+}
+.anchor-creature svg.pet-avatar { display: block; width: 100%; height: 100%; overflow: visible; }
+.anchor-creature > .sprite-pet { display: block; width: 100%; height: 100%; }
+.anchor-creature-lift { transform: translateY(var(--pet-lift, 0px)); }
+.anchor-creature-body {
+  transform-box: fill-box; transform-origin: 50% 95%;
+  transform: translateY(var(--pet-bob, 0px)) rotate(var(--pet-lean, 0deg)) scale(var(--pet-scale-x, 1), var(--pet-scale-y, 1));
+}
+.anchor-creature-face { transform: translate(var(--pet-look-x, 0px), var(--pet-look-y, 0px)); }
+.anchor-creature-eyes { transform-box: fill-box; transform-origin: center; transform: scaleY(var(--pet-eyes, 1)); }
+.anchor-creature-foot-left { transform: translate(var(--pet-left-x, 0px), var(--pet-left-y, 0px)); }
+.anchor-creature-foot-right { transform: translate(var(--pet-right-x, 0px), var(--pet-right-y, 0px)); }
+/* JS stops scheduling entirely as well. Keep a quiet, open-eyed pose while the
+   media change propagates; the creature's horizontal position is preserved. */
+@media (prefers-reduced-motion: reduce) {
+  .anchor-creature-lift, .anchor-creature-body, .anchor-creature-face, .anchor-creature-eyes, .anchor-creature-foot { transform: none !important; }
+}

@@ -1,0 +1,24 @@
+.shelf-perched-pet {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 30px;
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  contain: layout style;
+}
+/* The scheduler also returns a quiet pose. This immediately honors a
+   preference change before presentation effects have propagated. */
+@media (prefers-reduced-motion: reduce) {
+  .shelf-perched-pet .candidate-head,
+  .shelf-perched-pet .candidate-haunch,
+  .shelf-perched-pet .candidate-face,
+  .shelf-perched-pet .candidate-eyes,
+  .shelf-perched-pet .candidate-chin,
+  .shelf-perched-pet .candidate-paw-left,
+  .shelf-perched-pet .candidate-paw-right,
+  .shelf-perched-pet .anchor-creature-face,
+  .shelf-perched-pet .anchor-creature-eyes { transform: none !important; }
+}

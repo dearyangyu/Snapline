@@ -1,0 +1,19 @@
+# Keep source diffs stable across Windows and Unix contributors.
+* text=auto eol=lf
+*.rs text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.lock text eol=lf
+*.svg text eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.ico binary
+*.webp binary
+# Preserve verbatim third-party notices and their recorded SHA256 values.
+licenses/** -text -whitespace

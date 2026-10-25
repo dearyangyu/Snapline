@@ -1,0 +1,13 @@
+svg.pet-avatar {
+  display: block;
+  width: 26px;
+  height: 28px;
+  flex-shrink: 0;
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+}
+/* Preview tiles may resize the root, while each body keeps its shared pose
+   hierarchy. No animation or hit area is created by the artwork itself. */
+.pet-avatar .anchor-creature-body,
+.pet-avatar .anchor-creature-eyes { transform-box: fill-box; }

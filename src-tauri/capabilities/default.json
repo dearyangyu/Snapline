@@ -1,0 +1,19 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop",
+  "description": "Local Snapline windows; native file operations are validated in Rust.",
+  "windows": [
+    "main",
+    "shelf",
+    "shelf-preview",
+    "anchor",
+    "anchor-glow",
+    "gallery",
+    "capture",
+    "pin-*"
+  ],
+  "permissions": [
+    "core:default",
+    "core:window:allow-start-dragging"
+  ]
+}

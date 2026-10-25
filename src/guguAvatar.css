@@ -1,0 +1,14 @@
+svg.gugu-avatar{display:block;overflow:visible;pointer-events:none;user-select:none}
+svg.gugu-avatar-perched{width:32px;height:30px}
+.gugu-avatar-standing .anchor-creature-lift{transform:translateY(calc(var(--pet-lift,0px)*4))}
+.gugu-avatar-standing .anchor-creature-body{transform:translateY(calc(var(--pet-bob,0px)*4)) rotate(var(--pet-lean,0deg)) scale(var(--pet-scale-x,1),var(--pet-scale-y,1))}
+.gugu-avatar-standing .anchor-creature-face{transform:translate(calc(var(--pet-look-x,0px)*4),calc(var(--pet-look-y,0px)*4))}
+.gugu-avatar-standing .anchor-creature-foot-left{transform:translate(calc(var(--pet-left-x,0px)*4),calc(var(--pet-left-y,0px)*4))}
+.gugu-avatar-standing .anchor-creature-foot-right{transform:translate(calc(var(--pet-right-x,0px)*4),calc(var(--pet-right-y,0px)*4))}
+.gugu-avatar-perched .gugu-ref-head{transform-box:view-box;transform-origin:64px 94px;transform:translate(calc(var(--candidate-head-x,0px)*4),calc(var(--candidate-head-y,0px)*4)) rotate(var(--candidate-head-angle,0deg)) scale(var(--candidate-head-scale-x,1),var(--candidate-head-scale-y,1))}
+.gugu-avatar-perched .gugu-ref-face{transform:translate(calc(var(--candidate-gaze-x,0px)*2),calc(var(--candidate-gaze-y,0px)*2))}
+.gugu-avatar-perched .gugu-ref-eyes{transform-box:view-box;transform-origin:64px 71px;transform:scaleY(var(--candidate-eye-open,1))}
+.gugu-avatar-perched .gugu-ref-haunch{transform-box:view-box;transform-origin:90px 92px;transform:scale(var(--candidate-body-scale-x,1),var(--candidate-body-scale-y,1))}
+.gugu-avatar-perched .gugu-ref-paw-left{transform-box:view-box;transform-origin:25px 92px;transform:translateY(calc(var(--candidate-paw-left-y,0px)*4)) rotate(var(--candidate-paw-left-angle,0deg))}
+.gugu-avatar-perched .gugu-ref-paw-right{transform-box:view-box;transform-origin:102px 92px;transform:translateY(calc(var(--candidate-paw-right-y,0px)*4)) rotate(var(--candidate-paw-right-angle,0deg))}
+@media(prefers-reduced-motion:reduce){.gugu-avatar-perched .gugu-ref-head,.gugu-avatar-perched .gugu-ref-face,.gugu-avatar-perched .gugu-ref-eyes,.gugu-avatar-perched .gugu-ref-haunch,.gugu-avatar-perched .gugu-ref-paw,.gugu-avatar-standing .anchor-creature-lift,.gugu-avatar-standing .anchor-creature-body,.gugu-avatar-standing .anchor-creature-face,.gugu-avatar-standing .anchor-creature-foot{transform:none!important}}

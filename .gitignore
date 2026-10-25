@@ -1,0 +1,35 @@
+# Dependencies and generated build output (keep both lockfiles in Git).
+/node_modules/
+/dist/
+/src-tauri/target/
+/src-tauri/gen/
+/release/
+coverage/
+*.log
+*.tsbuildinfo
+
+# Local reference checkouts, recordings, fixtures and developer caches.
+/参考/
+/artifacts/
+/.tools/
+/.tmp/
+/.test-temp/
+/.omc/
+/.codex/
+/.agents/
+__pycache__/
+*.py[cod]
+
+# Machine-specific configuration and secrets; examples may be committed.
+.env
+.env.*
+!.env.example
+!.env.*.example
+/.vscode/
+/.idea/
+*.local
+
+# Operating-system metadata.
+.DS_Store
+Thumbs.db
+Desktop.ini

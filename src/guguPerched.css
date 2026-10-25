@@ -1,0 +1,24 @@
+.candidate-gugu { display: block; position: relative; width: 32px; height: 30px; overflow: visible; pointer-events: none; user-select: none; }
+.candidate-gugu > svg { display: block; width: 32px; height: 30px; overflow: visible; pointer-events: none; }
+.candidate-gugu .candidate-head {
+  transform-box: view-box;
+  transform-origin: 29px 45px;
+  transform: translate(calc(var(--candidate-head-x, 0px) * 2), calc(var(--candidate-head-y, 0px) * 2)) rotate(var(--candidate-head-angle, 0deg)) scale(var(--candidate-head-scale-x, 1), var(--candidate-head-scale-y, 1));
+}
+.candidate-gugu .candidate-face {
+  transform: translate(calc(var(--candidate-gaze-x, 0px) * 2), calc(var(--candidate-gaze-y, 0px) * 2));
+}
+.candidate-gugu .candidate-eyes { transform-box: fill-box; transform-origin: 50% 50%; transform: scaleY(var(--candidate-eye-open, 1)); }
+.candidate-gugu .candidate-chin { transform: translateY(calc(var(--candidate-chin-y, 0px) * 2)); }
+.candidate-gugu .candidate-paw-left {
+  transform-box: view-box; transform-origin: 12px 46px;
+  transform: translate(calc(var(--candidate-paw-left-x, 0px) * 2), calc(var(--candidate-paw-left-y, 0px) * 2)) rotate(var(--candidate-paw-left-angle, 0deg));
+}
+.candidate-gugu .candidate-paw-right {
+  transform-box: view-box; transform-origin: 43px 46px;
+  transform: translate(calc(var(--candidate-paw-right-x, 0px) * 2), calc(var(--candidate-paw-right-y, 0px) * 2)) rotate(var(--candidate-paw-right-angle, 0deg));
+}
+.candidate-gugu .candidate-haunch {
+  transform-box: view-box; transform-origin: 43px 46px;
+  transform: scale(var(--candidate-body-scale-x, 1), var(--candidate-body-scale-y, 1));
+}

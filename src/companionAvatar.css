@@ -1,0 +1,31 @@
+.companion-avatar { display: block; width: 26px; height: 32.5px; flex-shrink: 0; overflow: visible; pointer-events: none; user-select: none; }
+.companion-avatar[data-pose="perched"] { width: 32px; height: 30px; }
+.companion-avatar[data-pose="standing"] .anchor-creature-lift { transform: translateY(calc(var(--pet-lift, 0px) * 4)); }
+.companion-avatar[data-pose="standing"] .anchor-creature-body {
+  transform-box: fill-box; transform-origin: 50% 95%;
+  transform: translateY(calc(var(--pet-bob, 0px) * 4)) rotate(var(--pet-lean, 0deg)) scale(var(--pet-scale-x, 1), var(--pet-scale-y, 1));
+}
+.companion-avatar[data-pose="standing"] .anchor-creature-face { transform: translate(calc(var(--pet-look-x, 0px) * 4), calc(var(--pet-look-y, 0px) * 4)); }
+.companion-avatar[data-pose="standing"] .anchor-creature-eyes { transform: scaleY(var(--pet-eyes, 1)); }
+.companion-avatar[data-pose="standing"] .anchor-creature-foot-left { transform: translate(calc(var(--pet-left-x, 0px) * 4), calc(var(--pet-left-y, 0px) * 4)); }
+.companion-avatar[data-pose="standing"] .anchor-creature-foot-right { transform: translate(calc(var(--pet-right-x, 0px) * 4), calc(var(--pet-right-y, 0px) * 4)); }
+.companion-avatar[data-pose="perched"] .candidate-head {
+  transform-box: view-box; transform-origin: 64px 92px;
+  transform: translate(calc(var(--candidate-head-x, 0px) * 4), calc(var(--candidate-head-y, 0px) * 4)) rotate(var(--candidate-head-angle, 0deg)) scale(var(--candidate-head-scale-x, 1), var(--candidate-head-scale-y, 1));
+}
+.companion-avatar[data-pose="perched"] .candidate-face { transform: translate(calc(var(--candidate-gaze-x, 0px) * 4), calc(var(--candidate-gaze-y, 0px) * 4)); }
+.companion-avatar .candidate-eyes, .companion-avatar .anchor-creature-eyes { transform-box: fill-box; transform-origin: center; }
+.companion-avatar[data-pose="perched"] .candidate-eyes { transform: scaleY(var(--candidate-eye-open, 1)); }
+.companion-avatar[data-pose="perched"] .candidate-haunch { transform-box: view-box; transform-origin: 88px 92px; transform: scale(var(--candidate-body-scale-x, 1), var(--candidate-body-scale-y, 1)); }
+.companion-avatar[data-pose="perched"] .candidate-paw-left { transform-box: view-box; transform-origin: 32px 92px; transform: translateY(calc(var(--candidate-paw-left-y, 0px) * 4)) rotate(var(--candidate-paw-left-angle, 0deg)); }
+.companion-avatar[data-pose="perched"] .candidate-paw-right { transform-box: view-box; transform-origin: 96px 92px; transform: translateY(calc(var(--candidate-paw-right-y, 0px) * 4)) rotate(var(--candidate-paw-right-angle, 0deg)); }
+.companion-avatar[data-pose="perched"] .candidate-chin { transform: translateY(calc(var(--candidate-chin-y, 0px) * 4)); }
+@media (prefers-reduced-motion: reduce) {
+  .companion-avatar[data-pose="perched"] .candidate-head,
+  .companion-avatar[data-pose="perched"] .candidate-face,
+  .companion-avatar[data-pose="perched"] .candidate-eyes,
+  .companion-avatar[data-pose="perched"] .candidate-haunch,
+  .companion-avatar[data-pose="perched"] .candidate-paw-left,
+  .companion-avatar[data-pose="perched"] .candidate-paw-right,
+  .companion-avatar[data-pose="perched"] .candidate-chin { transform: none !important; }
+}

@@ -1,0 +1,39 @@
+.select-control, .select-popover {
+  --select-surface: #fff; --select-ink: #1f2329; --select-muted: #646a73; --select-disabled:#8f959e; --select-hover: #f0f2f5; --select-field: #f5f6f7; --select-selected-bg:#e8effc; --select-selected-ink:#2258d4;
+  font-family: 'Microsoft YaHei UI', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+  font-size: 14px; font-weight: 400; line-height: 20px; color: var(--select-ink);
+}
+html[data-theme='dark'] :is(.select-control, .select-popover):not([data-tone='light']) { --select-surface:#2b2d31; --select-ink:#e8e9eb; --select-muted:#a9aeb7; --select-disabled:#858c97; --select-hover:#383c44; --select-field:#30343b; --select-selected-bg:#263b61; --select-selected-ink:#8bb5ff; }
+/* Capture's explicitly light inspector keeps its existing type and palette;
+   body-portalled main-window menus get the same hierarchy as their triggers. */
+:is(.select-control, .select-popover)[data-tone='light'] { --select-surface:#fff; --select-ink:#252525; --select-muted:#666; --select-hover:#ededed; --select-field:#f1f1f1; font-family:'Segoe UI','Microsoft YaHei UI','Microsoft YaHei',sans-serif; }
+button.select-control {
+  display:inline-flex; align-items:center; justify-content:space-between; gap:16px;
+  min-width:148px; max-width:100%; min-height:34px; padding:7px 10px;
+  border:0; border-radius:7px; background:var(--select-field); text-align:left; flex-shrink:0;
+  box-shadow:none; transition:background-color 120ms ease;
+}
+.select-control > span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.select-control > svg { color:var(--select-muted); flex:none; }
+button.select-control:hover:not(:disabled), button.select-control[aria-expanded='true'] { background:var(--select-hover); }
+button.select-control:active:not(:disabled) { transform:none; }
+button.select-control:focus-visible:not(:disabled) { background:color-mix(in srgb, var(--select-field) 88%, var(--select-ink)); box-shadow:none; }
+button.select-control:disabled { cursor:default; opacity:1; color:var(--select-disabled); }
+button.select-control[data-tone='light']:disabled { opacity:.45; color:var(--select-ink); }
+.select-popover {
+  position:fixed; z-index:1000; display:flex; flex-direction:column; gap:2px;
+  padding:5px; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin;
+  background:var(--select-surface); border:0; border-radius:9px;
+  box-shadow:0 10px 32px #00000024, 0 2px 7px #00000012;
+  user-select:none; -webkit-user-select:none;
+}
+.select-option { display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:34px; flex-shrink:0; padding:7px 8px; border-radius:5px; cursor:default; }
+.select-option > span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.select-option > svg { flex:none; }
+.select-option.is-active { background:var(--select-hover); }
+.select-option[aria-selected='true'] { font-weight:400; }
+.select-popover:not([data-tone='light']) .select-option[aria-selected='true'] { color:var(--select-selected-ink); background:var(--select-selected-bg); }
+.select-option[aria-disabled='true'] { color:var(--select-disabled); }
+.select-popover[data-tone='light'] .select-option[aria-selected='true'] { font-weight:500; }
+.select-popover[data-tone='light'] .select-option[aria-disabled='true'] { color:var(--select-ink); opacity:.4; }
+.capture-tool-options button.select-control { width:100%; min-width:0; font-size:13px; }

@@ -1,0 +1,644 @@
+/* Capture-only chrome: compact Windows tools around the frozen desktop. */
+.capture-annotator .capture-selection {
+  border: 0;
+  outline: 1px solid #278be8;
+  box-shadow: 0 0 0 100000px rgb(0 0 0 / 22%);
+}
+.capture-annotator .capture-instructions,
+.capture-annotator .capture-cursor-hint {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100% - 12px);
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 2px;
+  background: #292929;
+  box-shadow: none;
+  color: #fff;
+  font:
+    11px "Segoe UI",
+    "Microsoft YaHei",
+    sans-serif;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.capture-annotator .capture-instructions span {
+  color: #e4e4e4;
+  margin-left: 0;
+}
+.capture-annotator .capture-selection.annotating {
+  cursor: crosshair;
+}
+.capture-annotator .capture-dimensions {
+  border-radius: 2px;
+  padding: 3px 7px;
+  background: #262626ed;
+  font:
+    12px Consolas,
+    monospace;
+  z-index: 2;
+}
+.capture-annotator .selection-handle {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border: 1px solid #278be8;
+  z-index: 4;
+}
+.capture-annotator .handle-nw {
+  left: -4px;
+  top: -4px;
+}
+.capture-annotator .handle-ne {
+  right: -4px;
+  top: -4px;
+}
+.capture-annotator .handle-sw {
+  left: -4px;
+  bottom: -4px;
+}
+.capture-annotator .handle-se {
+  right: -4px;
+  bottom: -4px;
+}
+.capture-annotator .handle-n {
+  left: calc(50% - 3px);
+  top: -4px;
+}
+.capture-annotator .handle-s {
+  left: calc(50% - 3px);
+  bottom: -4px;
+}
+.capture-annotator .handle-w {
+  left: -4px;
+  top: calc(50% - 3px);
+}
+.capture-annotator .handle-e {
+  right: -4px;
+  top: calc(50% - 3px);
+}
+.capture-annotation-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  outline: none;
+}
+/* A single measured surface keeps the toolbar and its inspector in monitor bounds. */
+.capture-tool-panel {
+  --capture-control-border: #dedede;
+  --capture-control-ink: #333333;
+  --capture-control-muted: #686868;
+  --capture-control-accent: #333333;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 570px;
+  min-width: 0;
+  z-index: 10;
+  overflow: hidden;
+  background: #ffffff;
+  color-scheme: light;
+  color: var(--capture-control-ink);
+  border: 0;
+  border-radius: 12px;
+  box-shadow:
+    0 6px 22px #00000026,
+    0 1px 3px #0000000c;
+  font:
+    12px/1.4 "Segoe UI",
+    "Microsoft YaHei",
+    sans-serif;
+}
+.capture-tool-panel[hidden],
+.capture-options-body[hidden] {
+  display: none;
+}
+.capture-tool-main-scroll {
+  flex: 0 0 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.capture-tool-row {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+  gap: 2px;
+  padding: 6px;
+}
+.capture-tool-button {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 6px;
+  color: #444444;
+  background: transparent;
+  padding: 0;
+}
+.capture-tool-button:hover:not(:disabled) {
+  background: #eeeeee;
+  color: #202020;
+}
+.capture-tool-button.active {
+  background: #e3e3e3;
+  color: #202020;
+  box-shadow: none;
+}
+.capture-tool-panel button:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+.capture-tool-chevron {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+}
+.capture-tool-separator {
+  width: 1px;
+  height: 21px;
+  background: transparent;
+  flex: 0 0 1px;
+  margin: 0 3px;
+}
+.capture-tool-button.capture-tool-complete {
+  color: #ffffff;
+  background: #333333;
+}
+.capture-tool-button.capture-tool-complete:hover:not(:disabled) {
+  background: #484848;
+  color: #ffffff;
+}
+.capture-tool-options {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  border-top: 0;
+  background: #f5f5f5;
+}
+.capture-options-heading {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 7px 12px;
+  background: #f5f5f5;
+}
+.capture-options-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: #e8e8e8;
+  color: #555555;
+}
+.capture-options-heading strong {
+  color: #303030;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.capture-options-caption {
+  color: #737373;
+  font-size: 11px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.capture-options-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  padding: 0;
+  color: #666666;
+}
+.capture-options-toggle:hover {
+  background: #e7e7e7;
+  color: #333333;
+}
+.capture-options-body {
+  padding: 2px 14px 14px;
+  min-width: 0;
+}
+.capture-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  align-items: start;
+  gap: 14px 18px;
+}
+.capture-option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.capture-option-label {
+  display: block;
+  color: var(--capture-control-muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.capture-variant-group {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  min-width: 0;
+  max-width: 100%;
+  border: 0;
+  border-radius: 7px;
+  background: #eaeaea;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.capture-variant-group button {
+  display: inline-flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 29px;
+  padding: 5px 9px;
+  color: #5b5b5b;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  font:
+    12px/1.25 "Segoe UI",
+    "Microsoft YaHei",
+    sans-serif;
+  white-space: nowrap;
+}
+.capture-variant-group button[aria-pressed="true"] {
+  background: #fff;
+  color: #262626;
+  box-shadow: 0 1px 3px #00000010;
+  font-weight: 600;
+}
+.capture-variant-group button:hover:not(:disabled):not([aria-pressed="true"]) {
+  background: #dedede;
+  color: #333333;
+}
+.capture-parameter-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 37px;
+}
+.capture-tool-options input[type="range"] {
+  flex: 1 1 0;
+  min-width: 48px;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  border: 0;
+  border-radius: 4px;
+  appearance: none;
+  background: transparent;
+  accent-color: #555555;
+  cursor: pointer;
+}
+.capture-tool-options input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #666666 var(--capture-range-progress),
+    #d8d8d8 var(--capture-range-progress)
+  );
+}
+.capture-tool-options input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #555555;
+  box-shadow:
+    0 0 0 1px #cccccc,
+    0 1px 3px #00000026;
+}
+.capture-tool-options input[type="range"]:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.capture-parameter-value {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  min-width: 65px;
+  flex-shrink: 0;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: #333333;
+  font-variant-numeric: tabular-nums;
+}
+.capture-parameter-value b {
+  font-size: 13px;
+  font-weight: 600;
+}
+.capture-parameter-value span {
+  color: #737373;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.capture-redact-note {
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  color: #666666;
+  font-size: 11px;
+  line-height: 1.5;
+  padding-top: 18px;
+}
+.capture-color-group {
+  border-top: 0;
+  padding-top: 8px;
+  margin-top: 16px;
+}
+.capture-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-height: 28px;
+  padding: 2px;
+}
+.capture-swatches > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  border: 1px solid #00000022;
+  border-radius: 5px;
+  padding: 0;
+  box-shadow: inset 0 0 0 1px #ffffff20;
+}
+.capture-swatches > button.selected {
+  border-color: #00000055;
+  box-shadow: inset 0 0 0 1px #ffffff40;
+}
+.capture-swatches > button:hover:not(:disabled) {
+  box-shadow: 0 1px 4px #00000035;
+}
+.capture-color-divider {
+  height: 19px;
+  width: 1px;
+  background: transparent;
+  margin: 0 3px;
+}
+.capture-custom-color {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 27px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 5px;
+  color: #5b5b5b;
+  background: #fff;
+  font-size: 11px;
+  cursor: pointer;
+}
+.capture-custom-color.selected {
+  color: #222222;
+  background: #e2e2e2;
+}
+.capture-custom-color > i {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  border: 1px solid #00000022;
+}
+.capture-custom-color input[type="color"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.capture-custom-color:has(input:disabled) {
+  opacity: 0.36;
+  cursor: default;
+}
+.capture-custom-color input:disabled {
+  cursor: default;
+}
+.capture-tool-options select {
+  width: 100%;
+  min-width: 0;
+  height: 35px;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: #3b3b3b;
+  font:
+    12px "Segoe UI",
+    "Microsoft YaHei",
+    sans-serif;
+}
+.capture-font-size-control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 35px;
+  padding-right: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+}
+.capture-font-size-control input[type="number"] {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  border-radius: 6px;
+  padding: 5px 9px;
+  background: transparent;
+  color: #3b3b3b;
+  font:
+    13px "Segoe UI",
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.capture-font-size-control > span {
+  color: #737373;
+  font-size: 11px;
+}
+.capture-tool-options select:disabled,
+.capture-font-size-control input:disabled {
+  opacity: 0.45;
+}
+.capture-option-help {
+  color: #686868;
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 0;
+  margin: 9px 0 0;
+}
+.capture-inline-text {
+  position: absolute;
+  z-index: 12;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 22px #00000026;
+  background: #fff;
+  color: #292929;
+  user-select: text;
+  overflow: auto;
+}
+.capture-inline-text textarea {
+  display: block;
+  width: 100%;
+  min-height: 70px;
+  max-height: 180px;
+  border: 0;
+  resize: vertical;
+  outline: none;
+  line-height: 1.4;
+  padding: 10px;
+  background: #fffffff2;
+  white-space: pre-wrap;
+}
+.capture-inline-text > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  border-top: 0;
+  padding: 5px 7px;
+  background: #f4f4f4;
+}
+.capture-inline-text > div > span {
+  font-size: 10px;
+  margin-right: auto;
+  color: #626262;
+  padding-left: 4px;
+}
+.capture-inline-text button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 30px;
+  border-radius: 5px;
+  color: #333333;
+}
+.capture-inline-text button:hover {
+  background: #e7e7e7;
+}
+.capture-inline-text button:disabled {
+  opacity: 0.35;
+}
+.capture-annotator .capture-key-hint {
+  background: #262626ed;
+  padding: 5px 10px;
+  font-size: 10px;
+  border-radius: 3px;
+  z-index: 5;
+  white-space: normal;
+  text-align: center;
+}
+.capture-annotator .capture-error {
+  z-index: 20;
+}
+.capture-tool-panel input:focus-visible,
+.capture-tool-panel select:focus-visible,
+.capture-inline-text textarea:focus-visible {
+  outline: none;
+  box-shadow: inset 0 -2px #555555;
+}
+.capture-tool-panel button:focus-visible:not(:disabled),
+.capture-inline-text button:focus-visible:not(:disabled) {
+  outline:none;
+  background-image:linear-gradient(#00000014, #00000014);
+  box-shadow:none;
+}
+.capture-custom-color:has(input:focus-visible),
+.capture-font-size-control:has(input:focus-visible) {
+  outline: none;
+  box-shadow: inset 0 -2px #555555;
+}
+.capture-custom-color input:focus-visible,
+.capture-font-size-control input:focus-visible {
+  outline: none;
+}
+.capture-annotator .pixel-loupe {
+  background: #292b2f; border: 0; border-radius: 9px; color: #f0f0f1;
+  box-shadow: 0 5px 20px #0005, inset 0 0 0 1px #ffffff21;
+  font: 11px/1 Consolas, 'Segoe UI', monospace;
+}
+.capture-annotator .loupe-heading {
+  height: 24px; padding: 0 9px; display: flex; align-items: center;
+  justify-content: space-between; font: 10px/1 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  color: #d9dadd;
+}
+.capture-annotator .loupe-heading small { font: 10px/1 Consolas, monospace; color: #aeb1b8; }
+.capture-annotator .loupe-image { background-color: #1b1c1f; box-shadow: inset 0 0 0 1px #ffffff1c; }
+.capture-annotator .loupe-image:before,
+.capture-annotator .loupe-image:after { content: none; }
+.capture-annotator .loupe-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(to right, #ffffff16 1px, transparent 1px), linear-gradient(to bottom, #ffffff16 1px, transparent 1px);
+  pointer-events: none;
+}
+.capture-annotator .loupe-reticle { position: absolute; inset: 0; pointer-events: none; }
+.capture-annotator .loupe-reticle:before,
+.capture-annotator .loupe-reticle:after {
+  content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.capture-annotator .loupe-reticle:before { width: 24px; height: 1px; background: linear-gradient(to right, #ddd 0 7px, transparent 7px 17px, #ddd 17px); }
+.capture-annotator .loupe-reticle:after { width: 1px; height: 24px; background: linear-gradient(to bottom, #ddd 0 7px, transparent 7px 17px, #ddd 17px); }
+.capture-annotator .loupe-image .loupe-sample-cell {
+  left: 50%; top: 50%; width: 8px; height: 8px; transform: translate(-50%, -50%);
+  border: 1px solid #fff; box-shadow: 0 0 0 1px #000b; pointer-events: none;
+}
+.capture-annotator .loupe-readout {
+  display: flex; height: 24px; padding: 0 8px; gap: 5px; align-items: center; white-space: nowrap;
+}
+.capture-annotator .loupe-readout i { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 2px; box-shadow: 0 0 0 1px #ffffff60; }
+.capture-annotator .loupe-readout code { font: 10px/1 Consolas, monospace; }
+.capture-annotator .loupe-readout small { margin-left: auto; font: 9px/1 Consolas, monospace; color: #b8bbc2; }
+.capture-annotator .loupe-caption { height: 18px; padding: 1px 9px 0; color: #aeb1b8; font: 10px/1 'Segoe UI', 'Microsoft YaHei', sans-serif; }
+
+.capture-tool-panel .capture-tool-complete:focus-visible:not(:disabled) { background:#5a5a5a; box-shadow:none; }
+.capture-tool-panel .capture-swatches > button:focus-visible:not(:disabled) { background-image:none; box-shadow:none; }
+.capture-swatches > button { position:relative; }
+.capture-swatches > button:focus-visible:not(.selected)::after { content:""; position:absolute; inset:calc(50% - 2px); border-radius:50%; background:currentColor; pointer-events:none; }
+.capture-swatches > button.selected:focus-visible > svg { transform:scale(1.2); }
+.capture-custom-color input:focus-visible, .capture-font-size-control input:focus-visible { box-shadow: none; }
